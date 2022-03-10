@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise的all⽅法</title>
+  </head>
+  <body>
+    <script>
+      var p1 = new Promise((resolve) => {
+          resolve({ msg: '1' })
+        }),
+        p2 = new Promise((resolve) => {
+          resolve({ msg: '2' })
+        }),
+        p3 = new Promise((resolve) => {
+          resolve({ msg: '3' })
+        })
+      Promise.all([p1, p2, p3]).then(function (results) {
+        console.log(results) // [{msg:"1"},{msg:"2"},{msg:"3"}]
+      })
+    </script>
+  </body>
+</html>
