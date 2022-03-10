@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vue3-todolist组件化</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- <img src="img/1.jpg" alt="img" id="app" /> -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script>
+      //mvm ,vue实例，vue组件
+      const app = Vue.createApp({
+        data() {
+          return {
+            index: 0,
+            list: ['img/1.jpg', 'img/2.jpg', 'img/3.jpg'],
+          }
+        },
+        methods: {
+          handleAddItem() {
+            this.$data.index += 1
+          },
+        },
+
+        /*    setInterval(() => {
+            this.$data.content += 1
+          }, 1000) */
+        template: `
+                <div>
+                    <button @click="handleAddItem" >
+                        开始</button>
+                                <todo-item 
+                                v-bind:content="list[this.index]"
+                                />  
+                    </div>
+                `,
+      })
+      app.component('todo-item', {
+        props: ['content'],
+        template: '<img src="{{content}}"/>',
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

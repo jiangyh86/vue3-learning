@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3实现todolist--了解循环和双向绑定</title>
+  </head>
+  <div id="app"></div>
+  <body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            inputvalue: '',
+            list: ['1', '2', '3'],
+          }
+        },
+        methods: {
+          handAddItem() {
+            this.list.push(this.inputvalue)
+            this.inputvalue = ''
+          },
+          lihidden() {},
+        },
+        template: `
+       <div>
+           <input v-model="inputvalue">
+           <button v-on:click="handAddItem">增加</button>
+           <ul>
+               <li v-for="(item,indx) of list" 
+                v-on:click="lihidden">{{item}}</li>
+           </ul>
+       </div>
+       `,
+      }).mount('#app')
+    </script>
+  </body>
+</html>
