@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 在dom节点渲染完成之前不显示 */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 插值表达式显示变量 -->
+      <h2>{{message}} {{lastName}} {{age}}岁</h2>
+      <!-- 访问变量属性 -->
+      <p>{{lastName.length}}</p>
+      <!-- 简单算术运算 -->
+      <p>{{age*2}}</p>
+      <!-- 三元运算 -->
+      <p>{{age==13?"正确":"错误"}}</p>
+      <!-- 调用自定义函数 -->
+      <p>{{customMethod(lastName)}}</p>
+      <!-- 调用js内置函数 -->
+      <p>{{Math.random()}}</p>
+      <p>--------------------------------------------------------------------</p>
+      <p v-html="link"></p>
+      <p>{{info}}</p>
+      <p v-pre="info"></p>
+      <!-- 消除花括号闪屏 -->
+      <p v-text="message"></p>
+      <!--  "你好" was accessed during render but is not defined on instance. at <App> -->
+      <!-- <p v-text="你好,message"></p> -->
+      <p v-cloak>你好啊，{{message}}</p>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: 'hello world',
+            lastName: 'Curry',
+            age: 13,
+            link: '<a href="https://www.baidu.com/">百度</a>',
+            info: 'Vue真有趣,尤其是{{Mustache}}表达式',
+          }
+        },
+        methods: {
+          customMethod(str) {
+            return str.split('').reverse().join(',')
+          },
+        },
+        // template: `
+        // 和插值直接显示二选一
+        // `,
+      })
+      app.mount('#root')
+    </script>
+  </body>
+</html>

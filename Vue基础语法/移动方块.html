@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        width: 80%;
+        margin: 0 auto;
+        height: 100vh;
+        background-color: rgb(31, 68, 192);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+      }
+      #box {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        margin: 10px;
+        position: absolute;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div
+        id="box"
+        tabindex="1"
+        @keyup.up="enterUp"
+        @keyup.right="enterRight"
+        @keyup.down="enterDown"
+        @keyup.left="enterLeft"
+      ></div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      var box = document.getElementById('box')
+      const app = Vue.createApp({
+        data() {
+          return {
+            flag: false,
+          }
+        },
+        methods: {
+          enterUp() {
+            box.style.top += 50
+          },
+          enterRight() {
+            alert('向右移动')
+          },
+          enterLeft() {
+            alert('向左移动')
+          },
+          enterDown() {
+            alert('向下移动')
+          },
+        },
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

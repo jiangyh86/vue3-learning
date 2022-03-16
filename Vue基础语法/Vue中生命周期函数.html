@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue生命周期函数</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: 'hello world',
+          }
+        },
+        beforeCreate() {
+          //在Vue实例之前自动执行的函数
+          console.log('beforeCreated', document.getElementById('root').innerHTML, this.message)
+        },
+        created() {
+          //在Vue实例时自动执行的函数
+          console.log('created', document.getElementById('root').innerHTML, this.message)
+        },
+        beforeMount() {
+          //在页面组件渲染到页面之前自动执行的函数
+          console.log('beforeMount', document.getElementById('root').innerHTML, this.message)
+        },
+        mounted() {
+          //在页面组件渲染到页面之后自动执行的函数
+          console.log('mounted', document.getElementById('root').innerHTML, this.message)
+        },
+        beforeUpdate() {
+          //当data数据发生变化自动执行的函数 （可以在控制台 app._instance.data.message='aaa'）
+          console.log('beforeUpdate', document.getElementById('root').innerHTML)
+        },
+        updated() {
+          //当data数据发生变化，页面更新完成后，自动执行的函数
+          console.log('beforeUpdate', document.getElementById('root').innerHTML)
+        },
+        beforeUnmount() {
+          //当Vue失效时自动执行的函数--通过控制台app.unmount()模拟该操作
+          console.log('beforeUnmount', document.getElementById('root').innerHTML)
+        },
+        unmounted() {
+          //当vue失效，dom完全销毁的时候，自动执行的函数
+          console.log('unmounted', document.getElementById('root').innerHTML)
+        },
+        template: `
+        <h2>{{message}}</h2>
+        `,
+      })
+      app.mount('#root')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>选择技术栈</h2>
+
+      <label for="Spring">
+        <input type="checkbox" id="Spring" value="Spring" v-model="checks" />
+        Spring
+      </label>
+      <label for="Vue">
+        <input type="checkbox" id="Vue" value="Vue" v-model="checks" />
+        Vue
+      </label>
+      <label for="Linux">
+        <input type="checkbox" id="Linux" value="Linux" v-model="checks" />
+        Linux
+      </label>
+      <h2>{{checks}}</h2>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            checks: [],
+          }
+        },
+        methods: {},
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

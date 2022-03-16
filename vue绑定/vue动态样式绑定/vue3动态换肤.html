@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .black {
+        background-color: black;
+      }
+      .white {
+        background-color: white;
+      }
+      div {
+        width: 100vh;
+        height: 100vh;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="change">一键换肤</button>
+      <div :class="{white:isWhite,black:isBlack}"></div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            isWhite: true,
+            isBlack: false,
+          }
+        },
+        methods: {
+          change() {
+            this.isBlack = !this.isBlack
+            this.isWhite = !this.isWhite
+          },
+        },
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

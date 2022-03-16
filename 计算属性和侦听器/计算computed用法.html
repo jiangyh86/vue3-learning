@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model.lazy.trim="fullName" type="text" />
+
+      <h2>firstName:{{firstName}}</h2>
+      <h2>lastName:{{lastName}}</h2>
+      <h3>全名：{{fullName}}</h3>
+      <!-- <input v-model.lazy.trim="firstName" type="text" /> -->
+      <!--  <input v-model.lazy="lastName" type="text" /> -->
+      <!-- //使用计算属性结果 -->
+      <!-- <h3>全名：{{fullName}}</h3>
+      <h3>全名：{{fullName}}</h3>
+      <h3>全名：{{fullName}}</h3> -->
+
+      <!-- 使用方法的结果 -->
+      <!-- <h3>全名：{{fullName1()}}</h3>
+      <h3>全名：{{fullName1()}}</h3>
+      <h3>全名：{{fullName1()}}</h3>  -->
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            firstName: '',
+            lastName: '',
+          }
+        },
+        //完整写法
+
+        computed: {
+          /*  fullName: function () {
+            console.log('计算属性')
+            return this.firstName + '       ' + this.lastName
+          }, */
+          fullName: {
+            get() {
+              console.log('计算属性')
+              return this.firstName + '       ' + this.lastName
+            },
+            set(newValue) {
+              //set方法接收输入v-model的值
+              //分割后得到数组
+              const strARr = newValue.split(' ')
+              this.firstName = strARr[0]
+              this.lastName = strARr[1]
+            },
+          },
+        },
+        methods: {
+          fullName1: function () {
+            console.log('方法实现')
+            return this.firstName + '       ' + this.lastName
+          },
+        },
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

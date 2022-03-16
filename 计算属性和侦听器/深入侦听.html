@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <input v-model.lazy.trim="fullName" type="text" /> -->
+      <input v-model.lazy.trim="player.firstName" type="text" />
+      <input v-model.lazy="player.lastName" type="text" />
+      <h2>firstName:{{player.firstName}}</h2>
+      <h2>lastName:{{player.lastName}}</h2>
+      <h3>全名：{{player.fullName}}</h3>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            player: {
+              firstName: '',
+              lastName: '',
+              fullName: '',
+            },
+          }
+        },
+        watch: {
+          //监听器标准语法格式
+          //可以侦听前后的值，oldValue 设置默认值可以在控制台直接显示
+          player: {
+            handler(newValue, oldValue) {
+              console.log('handler被调用')
+              this.player.fullName = oldValue.firstName + ' ' + oldValue.lastName
+            },
+            //可以深度检测player对象属性的值变化
+            deep: true,
+            //页面加载完毕就触发handler(数据初始化)
+            immediate: true,
+          },
+          //属性监听的简写语法格式
+          //   lastName: function () {
+          //     this.fullName = this.firstName + ' ' + this.lastName
+          //   },
+        },
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

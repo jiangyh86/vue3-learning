@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 输完显示 -->
+      <input v-model.lazy="name" type="text" />
+      <h2>输入的姓名:{{name}},类型是:{{type of name}}</h2>
+      <!-- 数字类型 -->
+      <input v-model.number="age" type="text" />
+      <h2>输入的姓名:{{age}},类型是:{{type of age}}</h2>
+      <!-- 去空格 -->
+      <input v-model.trim="info" type="text" />
+      <h2>输入的姓名:{{info}},类型是:{{type of info}}</h2>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <input type="file" multiple />
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            name: '',
+            age: null,
+            info: '',
+          }
+        },
+        methods: {},
+      })
+      app.mount('#app')
+    </script>
+  </body>
+</html>

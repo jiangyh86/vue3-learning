@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 阻止默认事件 -->
+      <!-- <h2 v-show="flag">hello world</h2>
+      <a @click.prevent="dothis" href="https://www.baidu.com">点击</a>
+
+      <form action="/login" @submit.prevent="dothis()" method="post">
+        <input type="submit" value="提交" />
+      </form> -->
+      <h2 v-show="flag">{{message}}</h2>
+      <input type="text" tabindex="1" @keyup.enter="submit()" />
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            message: 'hello world',
+            lastName: 'Curry',
+            age: 13,
+            link: 'https://www.baidu.com',
+            info: 'Vue真有趣,尤其是{{Mustache}}表达式',
+            flag: false,
+          }
+        },
+        methods: {
+          customMethod(str) {
+            return str.split('').reverse().join(',')
+          },
+          dothis() {
+            alert('点击')
+          },
+          submit() {
+            alert('4646')
+            flag = true
+          },
+        },
+        // template: `
+        // 和插值直接显示二选一
+        // `,
+      })
+      app.mount('#root')
+    </script>
+  </body>
+</html>
